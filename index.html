@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Animatic</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+video{width:100%;height:100%;object-fit:contain;display:block}
+button{position:fixed;right:16px;bottom:16px;padding:10px 14px;border:0;border-radius:8px;background:rgba(255,255,255,.15);color:#fff;font:14px system-ui,sans-serif;cursor:pointer;transition:opacity .3s}
+button:hover{background:rgba(255,255,255,.3)}
+:fullscreen button{opacity:0}
+:fullscreen button:hover{opacity:1}
+</style>
+</head>
+<body>
+<video src="/video.mp4" autoplay loop muted playsinline preload="auto"></video>
+<button id="fs">⛶ Tela cheia</button>
+<script>
+const b=document.getElementById('fs'),d=document.documentElement;
+b.onclick=()=>document.fullscreenElement?document.exitFullscreen():(d.requestFullscreen||d.webkitRequestFullscreen).call(d);
+document.addEventListener('fullscreenchange',()=>b.textContent=document.fullscreenElement?'✕ Sair':'⛶ Tela cheia');
+</script>
+</body>
+</html>
